@@ -1,0 +1,64 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Tomorrow";
+    overflow: hidden;
+    background: radial-gradient(farthest-corner at 40px 40px, rgb(8, 83, 129), rgb(22, 28, 54));
+    height: 100vh;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    color: white;
+    border-bottom: 2px solid white;
+}
+.content {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+.anatomy-container {
+    position: relative;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 5px;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.175);
+}
+
+#Male-Overlay {
+    height: 600px;
+    filter: invert(1);
+}
+#Male-Click {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 600px;
+    filter: invert(1);
+}
+.target-muscle:hover {
+    fill: red;
+    cursor: pointer;
+    filter: drop-shadow(20px 20px 50px rgba(255, 0, 0, 0.35))
+}
+#M-Trap {
+    fill: red;
+}
+
+
+/* INFO SECTION */
+
+.info-container {
+    color: white;
+    display: none;
+}
+.exc-info {
+    display: flex;
+    flex-direction: column;
+}
+.exc {
+    border: 1px solid white;
+}
+
+
