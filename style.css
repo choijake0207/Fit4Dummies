@@ -104,25 +104,43 @@ body {
     overflow-y: scroll;
     border: 1px solid rgba(255, 255, 255, 0.222);
     padding: 10px;
-    height: 70%;
+    height: 80%;
     width: 400px;
     gap: 10px;
     border-radius: 5px;
 }
-
 .exc-card {
     width: 350px;
     background: rgba(255, 255, 255, 0.032);
     padding: 20px;
-    border: 1px solid white;
 }
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid  rgba(255, 255, 255, 0.222);
 
+}
+.expand-toggle {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    height: 20px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
 
-
+}
 .error.thumbnail {
+    background: grey;
+    font-size: .8em;
+    text-align: center;
+}
+.thumbnail, .error.thumbnail {
     height: 100px;
     width: 150px;
-    background: grey;
+    border-radius: 5px;
 }
 
 
@@ -132,7 +150,7 @@ body {
 .loading {
     animation: loading 1s infinite ease-in-out;
 }
-.loading > * {
+.loading  * {
     display: none;
 }
 
