@@ -2,7 +2,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: "Tomorrow";
+    font-family: "Mononoki";
     overflow: hidden;
     background: radial-gradient(farthest-corner at 40px 40px, rgb(8, 83, 129), rgb(22, 28, 54));
     height: 100vh;
@@ -12,18 +12,47 @@ body {
     display: flex;
     justify-content: center;
     color: white;
-    border-bottom: 2px solid white;
+    padding: 5px;
+    font-family: "JetBrains Mono";
+    letter-spacing: -1px;
+    padding-left: 20px;
+}
+
+.Dummies {
+    font-family: "Caveat Brush";
+    font-size: 1.5em;
+    font-style: italic;
+    border-bottom: 5px solid white;
 }
 .content {
     display: flex;
     justify-content: center;
-    padding: 30px;
+    transition: .5s;
+    height: 600px;
 }
 .anatomy-container {
     position: relative;
     background: rgba(255, 255, 255, 0.08);
-    border-radius: 5px;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.175);
+    transition: .5s;
+}
+.btn-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    gap: 5px;
+
+}
+.btn-container button {
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    border-radius: 5px;
+}
+.btn-container button img {
+    width: 25px;
+    height: 25px;
+    filter: invert(.8)
 }
 
 #Male-Overlay {
@@ -40,25 +69,81 @@ body {
 .target-muscle:hover {
     fill: red;
     cursor: pointer;
-    filter: drop-shadow(20px 20px 50px rgba(255, 0, 0, 0.35))
 }
-#M-Trap {
+.target-muscle.selected {
     fill: red;
+    filter: drop-shadow(20px 20px 50px rgba(255, 0, 0, 0.5))
+
 }
+
 
 
 /* INFO SECTION */
 
+
+
+
 .info-container {
     color: white;
-    display: none;
+    background: rgba(0, 0, 0, 0.2);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.275);
+    overflow-y: hidden;
+    padding: 15px;
 }
-.exc-info {
+.info-title {
+    font-weight: bolder;
+}
+.exc-list {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    list-style: none;
+    overflow-y: scroll;
+    border: 1px solid rgba(255, 255, 255, 0.222);
+    padding: 10px;
+    height: 70%;
+    width: 400px;
+    gap: 10px;
+    border-radius: 5px;
 }
-.exc {
+
+.exc-card {
+    width: 350px;
+    background: rgba(255, 255, 255, 0.032);
+    padding: 20px;
     border: 1px solid white;
 }
+
+
+
+.error.thumbnail {
+    height: 100px;
+    width: 150px;
+    background: grey;
+}
+
+
+
+
+
+.loading {
+    animation: loading 1s infinite ease-in-out;
+}
+.loading > * {
+    display: none;
+}
+
+
+@keyframes loading {
+   
+    50% {
+        background: rgba(255, 255, 255, 0.012)
+    }
+}
+
+
 
 
