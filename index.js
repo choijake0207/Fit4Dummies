@@ -78,11 +78,12 @@ async function fetchYoutubeAndRender(exercise, card) {
             <h2 class="card-title">${exercise.name}</h2>
             <h3 class="card-summary">Description</h3>
             <p class="card-instructions">${exercise.instructions}</p>
+            <h3 class="thumbnail label">Example</h3>
             <img class="thumbnail" src="${thumbnail}" alt="${video.snippet.title}">
             <p class="card-pLabel">Primary Muscles: ${exercise.primaryMuscles.join(",")}</p>
             <p class="card-sLabel">Secondary Muscles: ${exercise.secondaryMuscles.length > 0 ? exercise.secondaryMuscles.join(", ") : "--"}</p>
         `
-    } catch (error) {
+    } catch (error) { // keep until quota resets
         console.log(error)
         setTimeout(() => {
             card.classList.remove("loading")
@@ -91,7 +92,8 @@ async function fetchYoutubeAndRender(exercise, card) {
             <h2 class="card-title">${exercise.name}</h2>
             <h3 class="card-summary">Description</h3>
             <p class="card-instructions">${exercise.instructions}</p>
-            <img class="error thumbnail">
+            <h3 class="thumbnail label">Example</h3>
+            <div class="error thumbnail"> Video Couldn't Load </div>
             <p class="card-pLabel">Primary Muscles: ${exercise.primaryMuscles.join(",")}</p>
             <p class="card-sLabel">Secondary Muscles: ${exercise.secondaryMuscles.length > 0 ? exercise.secondaryMuscles.join(", ") : "--"}</p>
         `
