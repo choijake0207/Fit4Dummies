@@ -70,12 +70,15 @@ function clearCard () {
 async function fetchYoutubeAndRender(exercise, card) {
 
     try {
-        const response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=1&q=${exercise}&key=${key}`)
+        // const response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=1&q=${exercise}&key=${key}`)
         const data = await response.json()
         const video = data.items[0]
         const thumbnail = video.snippet.thumbnail.default.url
         card.innerHTML = `
-            <h2 class="card-title">${exercise.name}</h2>
+            <div class="card-header">
+                <h2 class="card-title">${exercise.name}</h2>
+                <button class="expand-toggle"> View </button>
+            </div>
             <h3 class="card-summary">Description</h3>
             <p class="card-instructions">${exercise.instructions}</p>
             <h3 class="thumbnail label">Example</h3>
@@ -89,7 +92,10 @@ async function fetchYoutubeAndRender(exercise, card) {
             card.classList.remove("loading")
         }, 5000)
         card.innerHTML = `
-            <h2 class="card-title">${exercise.name}</h2>
+            <div class="card-header">
+                <h2 class="card-title">${exercise.name}</h2>
+                <button class="expand-toggle"> View </button>
+            </div>
             <h3 class="card-summary">Description</h3>
             <p class="card-instructions">${exercise.instructions}</p>
             <h3 class="thumbnail label">Example</h3>
