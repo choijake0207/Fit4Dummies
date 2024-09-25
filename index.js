@@ -2,6 +2,7 @@ const infoBox = document.querySelector(".info-container")
 const infoTitle = document.querySelector(".info-title")
 const excList = document.querySelector(".exc-list")
 const anatomyBox = document.querySelector(".anatomy-container")
+const key = "AIzaSyC-Mj59nCrhI1zWfI2t7c0QR-1U1cul1zI"
 
 // Animation Cases
 // 1.) New Select
@@ -9,13 +10,13 @@ const anatomyBox = document.querySelector(".anatomy-container")
 // 3.) Switch select => implement load anim
 
 // Preload Data
-let data = []
+let jsonList = []
 let visibleList = []
 window.onload = () => {
     fetch("./Assets/exercises.json")
         .then(res => res.json())
         .then(dataJSON => {
-            data = dataJSON
+            jsonList = dataJSON
         })
 }
 
@@ -38,10 +39,11 @@ targetMuscles.forEach(muscle => {
             muscle.classList.add("selected")
             const selection = muscle.getAttribute("id")
             const [gender, target] = selection.split("-")
-            const list = data.filter(exc => exc.primaryMuscles.find(primaryMuscle => primaryMuscle === target))
+            const list = jsonList.filter(exc => exc.primaryMuscles.find(primaryMuscle => primaryMuscle === target))
             visibleList = list.slice(0,5)
             console.log(visibleList)
-            displayExcList(target, list)
+            displayExcList(target)
+
         }
     })
 })
@@ -62,6 +64,7 @@ function displayExcList (target) {
         sMuscle.textContent = `Seconday Muscles: ${exercise.secondaryMuscles.length > 0 ? exercise.secondaryMuscles[0] : "--"}`
         card.append(cardTitle, pMuscle, sMuscle)
         excList.appendChild(card)
+        fetchYoutube(exercise.name)
     }
 }
 
@@ -70,9 +73,9 @@ function clearExcList () {
     infoTitle.textContent = "Click A Muscle Group To Start"
 }
 
-function fetchYoutube () {
-    const response = Youtube.Search
+function fetchYoutube (exc) {
+    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=3&q=${exc}&key=${key}`)
+        .then(response => response.json())
+        .then(data => console.log(data))
 }
 
-
-const youtubeSearchURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=${maxResults}&q=${encodeURIComponent(query)}&key=${API_KEY}`;
