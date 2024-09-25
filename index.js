@@ -54,17 +54,21 @@ function displayExcList (target) {
     infoTitle.textContent = target.toUpperCase()
     for (let i = 0; i < visibleList.length; i++) {
         let exercise = visibleList[i]
+        const response = fetchYoutube(exercise.name)
+        console.log(response)
         let card = document.createElement("li")
         card.classList.add("exc-card")
-        let cardTitle = document.createElement("h2")
-        cardTitle.textContent = exercise.name
-        let pMuscle = document.createElement("p")
-        pMuscle.textContent = `Primary Muscles: ${exercise.primaryMuscles[0]}`
-        let sMuscle = document.createElement("p")
-        sMuscle.textContent = `Seconday Muscles: ${exercise.secondaryMuscles.length > 0 ? exercise.secondaryMuscles[0] : "--"}`
-        card.append(cardTitle, pMuscle, sMuscle)
+        card.classList.add("loading")
+        card.innerHTML = `
+            <h2 class="card-title">${exercise.name}</h2>
+            <h3 class="card-summary">Description</h3>
+            <p class="card-instructions">${exercise.instructions}</p>
+            
+            <p class="card-pLabel">Primary Muscles: ${exercise.primaryMuscles.join(",")}</p>
+            <p class="card-sLabel">Secondary Muscles: ${exercise.secondaryMuscles.length > 0 ? exercise.secondaryMuscles.join(", ") : "--"}</p>
+        `
         excList.appendChild(card)
-        fetchYoutube(exercise.name)
+
     }
 }
 
@@ -74,8 +78,11 @@ function clearExcList () {
 }
 
 function fetchYoutube (exc) {
-    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=3&q=${exc}&key=${key}`)
+    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=1&q=${exc}&key=${key}`)
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data)
+        })
+
 }
 
