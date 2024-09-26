@@ -64,20 +64,12 @@ targetMuscles.forEach(muscle => {
 
 
 function filterExercises (target, level) {
-    if (level === "all") {
-        byMuscleList = initialJSONList.filter(exc => exc.primaryMuscles.find(primaryMuscle => primaryMuscle === target))
-        visibleList = byMuscleList.slice(0,5)
-        console.log(visibleList)
-        createCard()
-    } else {
-        byMuscleList = initialJSONList.filter(exc => exc.primaryMuscles.find(primaryMuscle => primaryMuscle === target))
-        const filterByLevel = byMuscleList.filter(exc => exc.level === level)
-        visibleList = filterByLevel.slice(0,5)
-        console.log(visibleList)
-        createCard()
+    byMuscleList = initialJSONList.filter(exc => exc.primaryMuscles.find(primaryMuscle => primaryMuscle === target))
+    if (level !== "all") {
+        byMuscleList = byMuscleList.filter(exc => exc.level === level)
     }
-   
-
+    visibleList = byMuscleList.slice(0,5)
+    createCard()
 }
 
 
