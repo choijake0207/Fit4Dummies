@@ -30,7 +30,9 @@ window.onload = () => {
 const selectInput = document.querySelector(".level-selection")
 selectInput.addEventListener("change", (e) => {
     level = e.target.value.toLowerCase()
-    filterExercises(targetMuscle, level)
+    if (targetMuscle !== "") {
+        filterExercises(targetMuscle, level)
+    }
     console.log(level)
 })
 
@@ -69,6 +71,7 @@ function filterExercises (target, level) {
         byMuscleList = byMuscleList.filter(exc => exc.level === level)
     }
     visibleList = byMuscleList.slice(0,5)
+    console.log(visibleList)
     createCard()
 }
 
@@ -79,6 +82,13 @@ function createCard () {
     excList.innerHTML=""
     infoTitle.innerHTML = ""
     infoTitle.textContent = targetMuscle.toUpperCase()
+    if (visibleList.length === 0) {
+        let noResultMessage = document.createElement("h2")
+        noResultMessage.classList.add("no-result-message")
+        noResultMessage.textContent = "No Results Found"
+        excList.appendChild(noResultMessage)
+
+    }
     for (let i = 0; i < visibleList.length; i++) {
         let exercise = visibleList[i]
         let card = document.createElement("li")
