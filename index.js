@@ -13,6 +13,11 @@ const key = "AIzaSyC-Mj59nCrhI1zWfI2t7c0QR-1U1cul1zI"
 let initialJSONList = []
 let byMuscleList = []
 let visibleList = []
+let targetMuscle = ""
+let level = "all"
+
+
+
 window.onload = () => {
     fetch("./Assets/exercises.json")
         .then(res => res.json())
@@ -24,7 +29,8 @@ window.onload = () => {
 
 const selectInput = document.querySelector(".level-selection")
 selectInput.addEventListener("change", (e) => {
-    const level = e.target.value.toLowerCase()
+    level = e.target.value.toLowerCase()
+    filterExercises(targetMuscle, level)
     console.log(level)
 })
 
@@ -38,6 +44,7 @@ targetMuscles.forEach(muscle => {
         // clear redundant selection
         if (muscle.classList.contains("selected")) {
             muscle.classList.remove("selected")
+            targetMuscle = ""
             clearCard()
         } else {
         // clear previous selection
@@ -48,19 +55,38 @@ targetMuscles.forEach(muscle => {
             muscle.classList.add("selected")
             const selection = muscle.getAttribute("id")
             const [gender, target] = selection.split("-")
-            byMuscleList = initialJSONList.filter(exc => exc.primaryMuscles.find(primaryMuscle => primaryMuscle === target))
-            visibleList = byMuscleList.slice(0,5)
-            console.log(visibleList)
-            createCard(target)
-
+            targetMuscle = target
+            filterExercises(targetMuscle, level)
         }
     })
 })
 
-function createCard (target) {
+
+
+function filterExercises (target, level) {
+    if (level === "all") {
+        byMuscleList = initialJSONList.filter(exc => exc.primaryMuscles.find(primaryMuscle => primaryMuscle === target))
+        visibleList = byMuscleList.slice(0,5)
+        console.log(visibleList)
+        createCard()
+    } else {
+        byMuscleList = initialJSONList.filter(exc => exc.primaryMuscles.find(primaryMuscle => primaryMuscle === target))
+        const filterByLevel = byMuscleList.filter(exc => exc.level === level)
+        visibleList = filterByLevel.slice(0,5)
+        console.log(visibleList)
+        createCard()
+    }
+   
+
+}
+
+
+
+
+function createCard () {
     excList.innerHTML=""
     infoTitle.innerHTML = ""
-    infoTitle.textContent = target.toUpperCase()
+    infoTitle.textContent = targetMuscle.toUpperCase()
     for (let i = 0; i < visibleList.length; i++) {
         let exercise = visibleList[i]
         let card = document.createElement("li")
