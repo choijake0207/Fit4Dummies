@@ -10,15 +10,24 @@ const key = "AIzaSyC-Mj59nCrhI1zWfI2t7c0QR-1U1cul1zI"
 // 3.) Switch select => implement load anim
 
 // Preload Data
-let jsonList = []
+let initialJSONList = []
+let byMuscleList = []
 let visibleList = []
 window.onload = () => {
     fetch("./Assets/exercises.json")
         .then(res => res.json())
         .then(dataJSON => {
-            jsonList = dataJSON
+            initialJSONList = dataJSON
         })
 }
+
+
+const selectInput = document.querySelector(".level-selection")
+selectInput.addEventListener("change", (e) => {
+    const level = e.target.value.toLowerCase()
+    console.log(level)
+})
+
 
 
 
@@ -39,8 +48,8 @@ targetMuscles.forEach(muscle => {
             muscle.classList.add("selected")
             const selection = muscle.getAttribute("id")
             const [gender, target] = selection.split("-")
-            const list = jsonList.filter(exc => exc.primaryMuscles.find(primaryMuscle => primaryMuscle === target))
-            visibleList = list.slice(0,5)
+            byMuscleList = initialJSONList.filter(exc => exc.primaryMuscles.find(primaryMuscle => primaryMuscle === target))
+            visibleList = byMuscleList.slice(0,5)
             console.log(visibleList)
             createCard(target)
 
@@ -90,7 +99,7 @@ async function fetchYoutubeAndRender(exercise, card) {
         console.log(error)
         setTimeout(() => {
             card.classList.remove("loading")
-        }, 5000)
+        }, 2000)
         card.innerHTML = `
             <div class="card-header">
                 <h2 class="card-title">${exercise.name}</h2>
@@ -98,7 +107,7 @@ async function fetchYoutubeAndRender(exercise, card) {
             </div>
             <h3 class="card-summary">Description</h3>
             <p class="card-instructions">${exercise.instructions}</p>
-            <h3 class="thumbnail label">Example</h3>
+            <h3 class="thumbnail-label">Example</h3>
             <div class="error thumbnail"> Video Couldn't Load </div>
             <p class="card-pLabel">Primary Muscles: ${exercise.primaryMuscles.join(",")}</p>
             <p class="card-sLabel">Secondary Muscles: ${exercise.secondaryMuscles.length > 0 ? exercise.secondaryMuscles.join(", ") : "--"}</p>
