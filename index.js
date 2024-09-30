@@ -110,22 +110,40 @@ function createCard () {
                 <h2 class="card-title">${exercise.name}</h2>
                 <button class="expand-toggle"> View </button>
             </div>
-            <h3 class="card-summary">Description</h3>
-            <p class="card-instructions">${exercise.instructions.join(" ")}</p>
-            <div class="img-container">
-                <img class="demo" src=${imgPath1} alt=${exercise}-demo-1>
-                <img class="demo" src=${imgPath2} alt=${exercise}-demo-2>
+            <div class="card-body">
+                <h3 class="card-summary">Description</h3>
+                <p class="card-instructions">${exercise.instructions.join(" ")}</p>
+                <div class="img-container">
+                    <img class="demo" src=${imgPath1} alt=${exercise}-demo-1>
+                    <img class="demo" src=${imgPath2} alt=${exercise}-demo-2>
+                </div>
+                <p class="card-pLabel">Primary Muscles: ${exercise.primaryMuscles.join(",")}</p>
+                <p class="card-sLabel">Secondary Muscles: ${exercise.secondaryMuscles.length > 0 ? exercise.secondaryMuscles.join(", ") : "--"}</p>
             </div>
-            <p class="card-pLabel">Primary Muscles: ${exercise.primaryMuscles.join(",")}</p>
-            <p class="card-sLabel">Secondary Muscles: ${exercise.secondaryMuscles.length > 0 ? exercise.secondaryMuscles.join(", ") : "--"}</p>
-        `
-        
+            `
+        let toggleViewBtn = card.querySelector(".expand-toggle")
+        toggleViewBtn.addEventListener("click", () => {
+            toggleExpand(card)
+        })
     }
 }
 
 function clearCard () {
     excList.innerHTML = ""
     infoTitle.textContent = "Click A Muscle Group To Start"
+}
+
+function toggleExpand(card) {
+    if (card.classList.contains("expand")) {
+        card.classList.remove("expand")
+    } else {
+        document.querySelectorAll(".expand").forEach(expandedCard => {
+            expandedCard.classList.remove("expand")
+        })  
+        card.classList.add("expand")
+
+    }
+    
 }
 
 
