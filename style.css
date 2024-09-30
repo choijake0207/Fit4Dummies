@@ -2,7 +2,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: "Mononoki";
+    font-family: "Satoshi Variable";
     overflow: hidden;
     background: radial-gradient( rgb(8, 83, 129), rgb(4, 33, 79));
     height: 100vh;
@@ -13,13 +13,13 @@ body {
     justify-content: center;
     color: white;
     padding: 5px;
-    font-family: "JetBrains Mono";
+    font-family: "Caveat Brush";
     letter-spacing: -1px;
     padding-left: 20px;
+    font-size: 1.25em;
 }
 
 .Dummies {
-    font-family: "Caveat Brush";
     font-size: 1.5em;
     font-style: italic;
     border-bottom: 5px solid white;
@@ -58,6 +58,7 @@ body {
 #Male-Overlay {
     height: 600px;
     filter: invert(1);
+    z-index: 0;
 }
 #Male-Click {
     position: absolute;
@@ -65,10 +66,12 @@ body {
     left: 0;
     height: 600px;
     filter: invert(1);
+    z-index: 1;
 }
+
 .target-muscle:hover {
     fill: red;
-    cursor: pointer;
+    cursor:pointer;
 }
 .target-muscle.selected {
     fill: red;
@@ -115,7 +118,9 @@ body {
 
 .info-title {
     font-weight: bolder;
-    margin: 5px;
+    font-size: 2em;
+    margin: 0;
+    margin-top: 5px;
 }
 .exc-list {
     display: flex;
@@ -130,6 +135,7 @@ body {
     width: 400px;
     gap: 10px;
     border-radius: 5px;
+    position: relative;
 }
 .exc-card {
     width: 350px;
@@ -140,8 +146,12 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid  rgba(255, 255, 255, 0.222);
-
+    gap: 20px;
+}
+.card-title {
+    font-size: 1.35em;
+    font-weight: 600;
+    margin: 0px;
 }
 .expand-toggle {
     background: none;
@@ -152,23 +162,37 @@ body {
     align-items: center;
     color: rgba(255, 255, 255, 0.5);
     border-radius: 5px;
-
 }
-.error.thumbnail {
-    background: grey;
-    font-size: .8em;
-    text-align: center;
+.expand-toggle:hover {
+    color: white;
+    border: 1px solid white;
 }
-.thumbnail, .error.thumbnail {
-    height: 100px;
+.card-body {
+    height: 0;
+    overflow: hidden;
+    transition: .2s ease-in;
+    padding-left: 5px;
+}
+.exc-card.expand .card-body {
+    animation: expand .3s  ease forwards;
+}
+.card-summary {
+    font-weight: 500;
+}
+.card-instructions {
+    color: rgba(255, 255, 255, 0.55);
+}
+.demo {
     width: 150px;
     border-radius: 5px;
 }
-
-
-
-
-
+.card-pLabel, .card-sLabel {
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+    margin-top: 10px;
+    font-style: italic;
+    font-weight: 500;
+}
 .loading {
     animation: loading 1s infinite ease-in-out;
 }
@@ -177,12 +201,38 @@ body {
 }
 
 
+.load-more-btn {
+    position: absolute;
+    bottom: 20px;
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    height: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+}
+
+
+
+@keyframes expand {
+    0% {
+        height: 0;
+    }
+   
+    100% {
+        height: fit-content;
+    }
+}
+
 @keyframes loading {
    
     50% {
         background: rgba(255, 255, 255, 0.012)
     }
 }
+
 
 
 
