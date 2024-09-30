@@ -90,12 +90,37 @@ function createCard () {
 
     }
     for (let i = 0; i < visibleList.length; i++) {
+        // get exercise object
         let exercise = visibleList[i]
+        // create exercise card
         let card = document.createElement("li")
         card.classList.add("exc-card")
+        // mock loading
         card.classList.add("loading")
+        setTimeout(() => {
+            card.classList.remove("loading")
+        }, 500)
         excList.appendChild(card)
-        fetchYoutubeAndRender(exercise, card)
+        // get image demo paths
+        let imgPath1 = `./Assets/exercises-img/${exercise.id}/0.jpg`
+        let imgPath2 = `./Assets/exercises-img/${exercise.id}/1.jpg`
+        // render html content
+        card.innerHTML = `
+            <div class="card-header">
+                <h2 class="card-title">${exercise.name}</h2>
+                <button class="expand-toggle"> View </button>
+            </div>
+            <h3 class="card-summary">Description</h3>
+            <p class="card-instructions">${exercise.instructions}</p>
+            <h3 class="thumbnail label">Demonstration</h3>
+            <div class="img-container">
+                <img src=${imgPath1} alt=${exercise}-demo-1>
+                <img src=${imgPath2} alt=${exercise}-demo-2>
+            </div>
+            <p class="card-pLabel">Primary Muscles: ${exercise.primaryMuscles.join(",")}</p>
+            <p class="card-sLabel">Secondary Muscles: ${exercise.secondaryMuscles.length > 0 ? exercise.secondaryMuscles.join(", ") : "--"}</p>
+        `
+        
     }
 }
 
@@ -104,43 +129,9 @@ function clearCard () {
     infoTitle.textContent = "Click A Muscle Group To Start"
 }
 
-async function fetchYoutubeAndRender(exercise, card) {
 
-    try {
-        // const response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=1&q=${exercise}&key=${key}`)
-        const data = await response.json()
-        const video = data.items[0]
-        const thumbnail = video.snippet.thumbnail.default.url
-        card.innerHTML = `
-            <div class="card-header">
-                <h2 class="card-title">${exercise.name}</h2>
-                <button class="expand-toggle"> View </button>
-            </div>
-            <h3 class="card-summary">Description</h3>
-            <p class="card-instructions">${exercise.instructions}</p>
-            <h3 class="thumbnail label">Example</h3>
-            <img class="thumbnail" src="${thumbnail}" alt="${video.snippet.title}">
-            <p class="card-pLabel">Primary Muscles: ${exercise.primaryMuscles.join(",")}</p>
-            <p class="card-sLabel">Secondary Muscles: ${exercise.secondaryMuscles.length > 0 ? exercise.secondaryMuscles.join(", ") : "--"}</p>
-        `
-    } catch (error) { // keep until quota resets
-        console.log(error)
-        setTimeout(() => {
-            card.classList.remove("loading")
-        }, 2000)
-        card.innerHTML = `
-            <div class="card-header">
-                <h2 class="card-title">${exercise.name}</h2>
-                <button class="expand-toggle"> View </button>
-            </div>
-            <h3 class="card-summary">Description</h3>
-            <p class="card-instructions">${exercise.instructions}</p>
-            <h3 class="thumbnail-label">Example</h3>
-            <div class="error thumbnail"> Video Couldn't Load </div>
-            <p class="card-pLabel">Primary Muscles: ${exercise.primaryMuscles.join(",")}</p>
-            <p class="card-sLabel">Secondary Muscles: ${exercise.secondaryMuscles.length > 0 ? exercise.secondaryMuscles.join(", ") : "--"}</p>
-        `
-    }
-}
+
+
+
 
 
