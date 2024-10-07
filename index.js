@@ -81,7 +81,7 @@ function filterExercises (target, level) {
 function createCard () {
     excList.innerHTML=""
     infoTitle.innerHTML = ""
-    infoTitle.textContent = targetMuscle.toUpperCase()
+    infoTitle.textContent = targetMuscle[0].toUpperCase() + targetMuscle.slice(1)
     if (visibleList.length === 0) {
         let noResultMessage = document.createElement("h2")
         noResultMessage.classList.add("no-result-message")
@@ -128,9 +128,12 @@ function createCard () {
     }
 }
 
+
+
+
 function clearCard () {
     excList.innerHTML = ""
-    infoTitle.textContent = "Click A Muscle Group To Start"
+    infoTitle.textContent = "Click A Muscle Group"
 }
 
 function toggleExpand(card) {
