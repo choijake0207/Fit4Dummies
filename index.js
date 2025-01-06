@@ -137,13 +137,17 @@ function clearCard () {
 }
 
 function toggleExpand(card) {
+    const body = card.querySelector(".card-body")
     if (card.classList.contains("expand")) {
         card.classList.remove("expand")
+        body.style.height = null
     } else {
-        document.querySelectorAll(".expand").forEach(expandedCard => {
+        document.querySelectorAll(".exc-card.expand").forEach(expandedCard => {
             expandedCard.classList.remove("expand")
+            expandedCard.querySelector(".card-body").style.height = null
         })  
         card.classList.add("expand")
+        body.style.height = body.scrollHeight + "px"
 
     }
     
