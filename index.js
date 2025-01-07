@@ -2,7 +2,6 @@ const infoBox = document.querySelector(".info-container")
 const infoTitle = document.querySelector(".info-title")
 const excList = document.querySelector(".exc-list")
 const anatomyBox = document.querySelector(".anatomy-container")
-const key = "AIzaSyC-Mj59nCrhI1zWfI2t7c0QR-1U1cul1zI"
 
 // Animation Cases
 // 1.) New Select
@@ -108,7 +107,7 @@ function createCard () {
         card.innerHTML = `
             <div class="card-header">
                 <h2 class="card-title">${exercise.name}</h2>
-                <button class="expand-toggle"> View </button>
+                <button class="expand-toggle"></button>
             </div>
             <div class="card-body">
                 <h3 class="card-summary">Description</h3>
@@ -150,6 +149,7 @@ function toggleExpand(card) {
         body.style.height = body.scrollHeight + "px"
 
     }
+    card.setAttribute("aria-expanded", body.style.height ? "true" : "false")
     
 }
 
