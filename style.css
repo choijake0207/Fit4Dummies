@@ -9,6 +9,9 @@ body {
     flex-direction: column;
     height: 100%;
 }
+body::-webkit-scrollbar {
+    display: none;
+}
 
 
 .header-msg {
@@ -116,6 +119,7 @@ body {
 .info-container {
     color: white;
     overflow-y: hidden;
+    overflow-x: hidden;
     height: 505px;
     width: 500px;
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -153,12 +157,13 @@ body {
     display: flex;
     cursor: pointer;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 400;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 5px;
     padding: 2.5px;
     width: fit-content;
     margin-top: 2px;
+    font-family: "Mona Sans"
 }
 .info-title {
     font-weight: 500;
@@ -179,20 +184,22 @@ body {
     height: 100%;
     padding: 10px;
     margin: 0;
+    position: relative;
+    box-sizing: border-box;
 }
-::-webkit-scrollbar {
+.exc-list::-webkit-scrollbar {
     display: none;
 }
 .exc-card {
     background: rgba(255, 255, 255, 0.03);
     padding: 20px;
     border-radius: 5px;
-    width: 440px;
+    width: 430px;
 }
 .card-body {
     height: 0;
     overflow: hidden;
-    transition: .2s ease-in-out;
+    transition: .4s ease-in-out;
 }
 .card-header {
     display: flex;
@@ -208,36 +215,28 @@ body {
 .exc-card:not(.expand):hover {
     background: rgba(255, 255, 255, 0.07);
     transition: .1s;
-    cursor: pointer;
 }
 .expand-toggle {
     background: none;
     height: 40px;
-    width: 60px;
+    width: 50px;
     padding: 10px;
     display: flex;
     align-items: center;
+    justify-content: right;
     color: rgba(255, 255, 255, 0.5);
     cursor: pointer;
     position: relative;
     border: none;
+    filter: invert(.5);
+    transition: .2s ease;
 }
-.expand-toggle::before {
-    content: "<";
-    position: absolute;
-    top: 15%;
-    left: 15%;
-    font-size: 2em;
-    font-weight: 100;
-    transition: .1s;
-    color: white;
-}
-.expand .expand-toggle::before {
+.expand .expand-toggle {
     rotate: -90deg;
-    transition: .1s ease;
 }
 .expand-toggle:hover {
     color: white;
+    filter: invert(1);
 }
 
 
@@ -271,8 +270,11 @@ body {
 .card-pLabel, .card-sLabel {
     color: rgba(255, 255, 255, 0.5);
     margin: 0;
-    margin-top: 15px;
+    margin-top: 5px;
     font-size: .85em;
+}
+.card-pLabel {
+    margin-top: 20px;
 }
 .loading {
     animation: loading 1.5s infinite ease-in-out;
@@ -300,15 +302,13 @@ body {
     font-weight: 500;
 }
 footer {
-    padding: 50px;
-    height: 100px;
     display: flex;
+    padding: 25px;
     justify-content: center;
-    align-items: last baseline;
-   
+    align-items: last baseline;   
 }
 footer img {
-    height: 30px;
+    height: 20px;
     filter: invert(1) opacity(.5)
 }
 footer a {
@@ -317,6 +317,7 @@ footer a {
     gap: 5px;
     text-decoration: none;
     color: rgba(255, 255, 255, 0.4);
+    font-size: .8em;
 }
 footer a:hover {
     color: white;
