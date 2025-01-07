@@ -117,8 +117,8 @@ function createCard () {
                     <img class="demo" src=${imgPath1} alt=${exercise}-demo-1>
                     <img class="demo" src=${imgPath2} alt=${exercise}-demo-2>
                 </div>
-                <p class="card-pLabel">Primary Muscles: ${exercise.primaryMuscles.join(",")}</p>
-                <p class="card-sLabel">Secondary Muscles: ${exercise.secondaryMuscles.length > 0 ? exercise.secondaryMuscles.join(", ") : "--"}</p>
+                <p class="card-pLabel"><span class="label-span">Primary Muscles:</span> ${exercise.primaryMuscles.map(pm => pm.charAt(0).toUpperCase() + pm.slice(1)).join(", ")}</p>
+                <p class="card-sLabel"><span class="label-span">Secondary Muscles:</span> ${exercise.secondaryMuscles.map(sm => sm.charAt(0).toUpperCase() + sm.slice(1)).join(", ")}</p>
             </div>
             `
         let toggleViewBtn = card.querySelector(".expand-toggle")
