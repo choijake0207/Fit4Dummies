@@ -107,7 +107,9 @@ function createCard () {
         card.innerHTML = `
             <div class="card-header">
                 <h2 class="card-title">${exercise.name}</h2>
-                <button class="expand-toggle"></button>
+                <button class="expand-toggle">
+                    <img src="./Assets/caret-left.svg"/>
+                </button>
             </div>
             <div class="card-body">
                 <h3 class="card-summary">Description</h3>
