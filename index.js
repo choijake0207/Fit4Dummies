@@ -69,7 +69,7 @@ function filterExercises (target, level) {
     if (level !== "all") {
         byMuscleList = byMuscleList.filter(exc => exc.level === level)
     }
-    visibleList = byMuscleList.slice(0,5)
+    visibleList = byMuscleList
     console.log(visibleList)
     createCard()
 }
