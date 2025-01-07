@@ -12,9 +12,7 @@
 </head>
 <body>
     <header class="header">
-        <a>
-            <img src="./Assets/github-logo-fill.svg"/>
-        </a>
+       
         <div class="header-msg">
             <h1>Lifting For <span class="Dummies">Dummies</span></h1>
             <p>Your one stop shop for getting started with weight lifting</p>
@@ -293,17 +291,19 @@
             </g>
             </svg>
         </section>
-        <section class="info-container hidden">
+        <section class="info-container">
             <div class="info-header">
                 <h2 class="info-title">Click A Muscle Group</h2>
-        
-                <select class="level-selection">
-                    <option>Difficulty</option>
-                    <option>Beginner</option>
-                    <option>Intermediate</option>
-                    <option>Expert</option>
-                </select>
 
+                <label>
+                    Filter by Experience:
+                    <select class="level-selection">
+                        <option>All</option>
+                        <option>Beginner</option>
+                        <option>Intermediate</option>
+                        <option>Expert</option>
+                    </select>
+                </label>
             </div>
             <ul class="exc-list">
 
@@ -311,7 +311,11 @@
 
         </section>
     </main>
-    <footer>iuasydlfgsadfi</footer>
+    <footer>
+        <a href="https://github.com/choijake0207/Fit4Dummies" target="_blank">
+            <img src="./Assets/github-logo-fill.svg"/> choijake0207
+        </a>
+    </footer>
 
 </body>
 <script src="index.js">
