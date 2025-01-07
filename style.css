@@ -11,24 +11,13 @@ body {
 }
 
 
-.header img {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    filter: invert(1);
-    opacity: 50%;
-    width: 30px;
-}
-.header img:hover {
-    opacity: 1;
-    cursor: pointer;
-}
 .header-msg {
     display: flex;
     flex-direction: column;
     justify-content: first baseline;
     align-items: center;
     color: white;
+    padding: 30px;
 }
 
 
@@ -163,7 +152,7 @@ body {
     outline: none;
     display: flex;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 500;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 5px;
@@ -212,50 +201,78 @@ body {
     gap: 20px;
 }
 .card-title {
-    font-size: 1.15em;
+    font-size: 1em;
     font-weight: 500;
     margin: 0px;
 }
+.exc-card:not(.expand):hover {
+    background: rgba(255, 255, 255, 0.07);
+    transition: .1s;
+    cursor: pointer;
+}
 .expand-toggle {
     background: none;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    height: 20px;
+    height: 40px;
+    width: 60px;
     padding: 10px;
     display: flex;
     align-items: center;
     color: rgba(255, 255, 255, 0.5);
-    border-radius: 5px;
     cursor: pointer;
+    position: relative;
+    border: none;
+}
+.expand-toggle::before {
+    content: "<";
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    font-size: 2em;
+    font-weight: 100;
+    transition: .1s;
+    color: white;
+}
+.expand .expand-toggle::before {
+    rotate: -90deg;
+    transition: .1s ease;
 }
 .expand-toggle:hover {
     color: white;
-    border: 1px solid white;
 }
 
-@keyframes bodyExpand {
-    0% {
-        transform: translateY(-10%);
-    }
-    100% {
-        transform: translateY(0);
-    }
-}
+
+
 .card-summary {
-    font-weight: 500;
+    font-weight:500;
+    font-size: .9em;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
 .card-instructions {
-    color: rgba(255, 255, 255, 0.55);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: .85em;
+    font-weight: 300;
+    margin-top: 0;
+  
+}
+.img-container {
+    display: flex;
+    justify-content: space-evenly;
 }
 .demo {
     width: 150px;
     border-radius: 5px;
 }
+.label-span {
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+}
 .card-pLabel, .card-sLabel {
     color: rgba(255, 255, 255, 0.5);
     margin: 0;
-    margin-top: 10px;
-    font-style: italic;
-    font-weight: 500;
+    margin-top: 15px;
+    font-size: .85em;
 }
 .loading {
     animation: loading 1.5s infinite ease-in-out;
@@ -278,11 +295,35 @@ body {
     color: rgba(255, 255, 255, 0.5);
     border-radius: 5px;
 }
-
+.no-result-message {
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+}
 footer {
-    padding: 25px;
-    bordeR: 1px solid white;
-    height: 100%;
+    padding: 50px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: last baseline;
+   
+}
+footer img {
+    height: 30px;
+    filter: invert(1) opacity(.5)
+}
+footer a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.4);
+}
+footer a:hover {
+    color: white;
+    cursor: pointer;
+}
+footer a:hover img {
+    filter: invert(1) opacity(1)
 }
 
 
